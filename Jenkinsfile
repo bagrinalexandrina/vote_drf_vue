@@ -20,10 +20,7 @@ pipeline {
             steps {
                 echo "Build number ${BUILD_NUMBER} and ${BUILD_TAG}"
 
-                bat 'python -m venv "${BUILD_TAG}" && \
-                    .\ ${BUILD_TAG}/bin/activate && \
-                    ${BUILD_TAG}/bin/pip install --upgrade pip && \
-                    ${BUILD_TAG}/bin/pip install -r requirements.txt && \
+                bat 'python -m pip install -r requirements.txt && \
                     python manage.py makemigrations && python manage.py migrate'
             }
 
