@@ -42,4 +42,5 @@ pipeline {
                echo "${params.CHOICE}"
                echo "${params.PASSWORD}"
       }
+      }
 }
