@@ -16,14 +16,17 @@ pipeline {
 
     stages() {
         stage("Building project") {
-        
             steps {
                 echo "Build number ${BUILD_NUMBER} and ${BUILD_TAG}"
 
                 bat 'python -m pip install -r requirements.txt && \
                     python manage.py makemigrations && python manage.py migrate'
             }
-
+        }
+        stage("Backend tests") {
+            steps {
+                bat 'python manage.py test'
+            }
 
         }
 
