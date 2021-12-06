@@ -44,10 +44,11 @@ pipeline {
                echo "${params.PASSWORD}"
             
             script {
-                   if (params.CLEAN_WORKSPACE == 'true') {
-                       echo 'Deleting BUILD_TAG folder'
+                   if (params.CLEAN_WORKSPACE == true) {
+                       echo 'Cleaning workspace'
+                       cleanWs()
                    } else {
-                       echo 'BUILD_TAG not folder deleted'
+                       echo 'Not needing to clean workspace'
                    }
                }
 
