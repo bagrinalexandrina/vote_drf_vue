@@ -34,7 +34,7 @@ pipeline {
 
         stage("Clean up workspace") {
             steps {
-                bat 'if %params.CLEAN_WORKSPACE==true% cleanWs()'
+                bat 'if %params.CLEAN_WORKSPACE%==true cleanWs()'
             }
         }
 
