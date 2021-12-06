@@ -12,8 +12,8 @@ pipeline {
     }
 
      environment {
-         DELETE_FOLDER_AFTER_STAGES = 'false'
-         DB_ENGINE    = 'sqlite3'
+         ON_SUCCESS_SEND_EMAIL = 'true'
+         ON_FAILURE_SEND_EMAIL = 'true'
      }
 
     stages() {
@@ -30,7 +30,12 @@ pipeline {
                 bat 'python manage.py test'
                 junit '**/test-reports/unittest/*.xml'
             }
+        }
 
+        stage("Frontend tests") {
+            steps {
+
+            }
         }
     }
 
@@ -54,5 +59,10 @@ pipeline {
                }
 
             }
+        success {
+              echo "Sending emails"
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: "Jenkins Build ${BUILD_TAG}"
+              
+         }
         }
 }
