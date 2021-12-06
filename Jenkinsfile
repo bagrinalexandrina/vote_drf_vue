@@ -57,6 +57,9 @@ pipeline {
         success {
             echo "${currentBuild.currentResult}"
             echo "Sending emails"
+            emailext body: 'Test Message',
+                    subject: 'Test Subject',
+                    to: 'alexandrina.bagrin@isa.utm.md'
         }
     }
 }
