@@ -31,6 +31,14 @@ pipeline {
                 junit '**/test-reports/unittest/*.xml'
             }
         }
+        stage("Testing frontend") {
+            environment { 
+                TESTING_FRONTEND=true
+            }
+            steps {
+                bat 'IF "%TESTING_FRONTEND%"=="true" echo "running frontend'
+            }
+        }
 
     }
 
