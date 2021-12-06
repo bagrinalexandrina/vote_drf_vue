@@ -1,6 +1,6 @@
 from django.test import TestCase
 
 # Create your tests here.
-class FirstTest(TestCase):
-    def example_test(self):
+class FirstTestCase(TestCase):
+    def test_one_is_one(self):
         self.assertEqual(1, 1)
