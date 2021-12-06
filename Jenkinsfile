@@ -57,9 +57,9 @@ pipeline {
         success {
             echo "${currentBuild.currentResult}"
             echo "Sending emails"
-            emailext body: 'Test Message',
-                    subject: 'Test Subject',
-                    to: 'alexandrina.bagrin@isa.utm.md'
+            emailext body: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS: Check console output at $BUILD_URL to view the results.',
+                     subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+                     to: 'alexandrina.bagrin@isa.utm.md'
         }
     }
 }
