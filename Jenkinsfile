@@ -37,11 +37,6 @@ pipeline {
     post {
         always {
             echo "${BUILD_TAG}"
-            echo "${params.PERSON}"
-            echo "${params.BIOGRAPHY}"
-            echo "${params.CHECKBOX}"
-            echo "${params.CHOICE}"
-            echo "${params.PASSWORD}"
             script {
                 if (params.CLEAN_WORKSPACE == true) {
                     echo 'Cleaning workspace'
@@ -52,6 +47,7 @@ pipeline {
             }
         }
         success {
+            echo "${BUILD_STATUS}"
             echo "Sending emails"
             emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: "Jenkins Build ${BUILD_TAG}"  
         }
