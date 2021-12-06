@@ -28,6 +28,7 @@ pipeline {
         stage("Backend tests") {
             steps {
                 bat 'python manage.py test'
+                junit './test-reports/unittest/*.xml'
             }
 
         }
@@ -48,12 +49,10 @@ pipeline {
                        echo 'Cleaning workspace'
                        cleanWs()
                    } else {
-                       echo '${params.CLEAN_WORKSPACE}'
                        echo 'Not needing to clean workspace'
                    }
                }
 
-               junit '**/test-reports/unittest/*.xml'
             }
         }
 }
