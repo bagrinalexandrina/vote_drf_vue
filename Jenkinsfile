@@ -7,7 +7,9 @@ pipeline {
           buildDiscarder(logRotator(numToKeepStr: '10'))
           timestamps()
      }
-
+    parameters {
+        booleanParam(name: 'CLEAN_WORKSPACE', defaultValue: true, description: 'Clean workspace at the end.')
+    }
 
      environment {
          DELETE_FOLDER_AFTER_STAGES = 'false'
@@ -28,6 +30,12 @@ pipeline {
                 bat 'python manage.py test'
             }
 
+        }
+
+        stage("Clean up workspace") {
+            steps {
+                bat 'if %params.CLEAN_WORKSPACE==true% cleanWs()'
+            }
         }
 
     }
