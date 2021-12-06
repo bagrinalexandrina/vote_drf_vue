@@ -28,7 +28,7 @@ pipeline {
         stage("Backend tests") {
             steps {
                 bat 'python manage.py test'
-                junit './test-reports/unittest/*.xml'
+                junit '**/test-reports/unittest/*.xml'
             }
 
         }
