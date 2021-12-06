@@ -31,13 +31,6 @@ pipeline {
             }
 
         }
-
-        stage("Clean up workspace") {
-            steps {
-                bat 'if %params.CLEAN_WORKSPACE%==true cleanWs()'
-            }
-        }
-
     }
 
       post {
@@ -49,6 +42,16 @@ pipeline {
                echo "${params.CHECKBOX}"
                echo "${params.CHOICE}"
                echo "${params.PASSWORD}"
-      }
-      }
+            
+            script {
+                   if (params.CLEAN_WORKSPACE == 'true') {
+                       echo 'Deleting BUILD_TAG folder'
+                   } else {
+                       echo 'BUILD_TAG not folder deleted'
+                   }
+               }
+
+               junit '**/test-reports/unittest/*.xml'
+            }
+        }
 }
