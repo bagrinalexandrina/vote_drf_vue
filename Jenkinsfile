@@ -48,6 +48,7 @@ pipeline {
                        echo 'Cleaning workspace'
                        cleanWs()
                    } else {
+                       echo '${params.CLEAN_WORKSPACE}'
                        echo 'Not needing to clean workspace'
                    }
                }
