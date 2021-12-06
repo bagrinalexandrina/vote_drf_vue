@@ -32,11 +32,6 @@ pipeline {
             }
         }
 
-        stage("Frontend tests") {
-            steps {
-
-            }
-        }
     }
 
     post {
@@ -55,10 +50,10 @@ pipeline {
                     echo 'Not needing to clean workspace'
                 }
             }
-            success {
-                echo "Sending emails"
-                emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: "Jenkins Build ${BUILD_TAG}"  
-            }
+        }
+        success {
+            echo "Sending emails"
+            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: "Jenkins Build ${BUILD_TAG}"  
         }
     }
 }
