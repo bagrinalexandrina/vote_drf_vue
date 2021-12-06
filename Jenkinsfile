@@ -36,7 +36,7 @@ pipeline {
                 TESTING_FRONTEND=true
             }
             steps {
-                bat 'IF "%TESTING_FRONTEND%"=="true" echo running frontend ${TESTING_FRONTEND}'
+                bat 'IF "%TESTING_FRONTEND%"=="true" echo "running frontend ${TESTING_FRONTEND}"'
             }
         }
 
@@ -57,7 +57,6 @@ pipeline {
         success {
             echo "${currentBuild.currentResult}"
             echo "Sending emails"
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: "Jenkins Build ${BUILD_TAG}"  
         }
     }
 }
