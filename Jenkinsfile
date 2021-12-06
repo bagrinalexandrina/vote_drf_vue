@@ -36,7 +36,7 @@ pipeline {
                 TESTING_FRONTEND=true
             }
             steps {
-                bat 'IF "%TESTING_FRONTEND%"=="true" echo "running frontend ${TESTING_FRONTEND}"'
+                bat 'IF "%TESTING_FRONTEND%"=="true" echo "running frontend %TESTING_FRONTEND%"'
             }
         }
 
