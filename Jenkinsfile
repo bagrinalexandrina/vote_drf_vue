@@ -47,7 +47,7 @@ pipeline {
             }
         }
         success {
-            echo "${BUILD_STATUS}"
+            echo "${currentBuild.currentResult}"
             echo "Sending emails"
             emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: "Jenkins Build ${BUILD_TAG}"  
         }
