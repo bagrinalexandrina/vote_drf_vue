@@ -21,13 +21,13 @@ pipeline {
             steps {
                 echo "Build number ${BUILD_NUMBER} and ${BUILD_TAG}"
 
-                sh 'python -m pip install -r requirements.txt && \
+                bat 'python -m pip install -r requirements.txt && \
                     python manage.py makemigrations && python manage.py migrate'
             }
         }
         stage("Backend tests") {
             steps {
-                sh 'python manage.py test'
+                bat 'python manage.py test'
                 junit '**/test-reports/unittest/*.xml'
             }
         }
@@ -36,7 +36,7 @@ pipeline {
                 TESTING_FRONTEND=true
             }
             steps {
-                sh 'IF "%TESTING_FRONTEND%"=="true" echo "running frontend %TESTING_FRONTEND%"'
+                bat 'IF "%TESTING_FRONTEND%"=="true" echo "running frontend %TESTING_FRONTEND%"'
             }
         }
 
